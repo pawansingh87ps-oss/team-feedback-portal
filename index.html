@@ -484,43 +484,54 @@ async function submitFeedback() {
   if (!focus || !align) { show("e10"); return; }
   hide("e10");
   const payload = {
-    timestamp: new Date().toISOString(),
-    submission_date: new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}),
-    team_lead_name: v("tl-name").trim(),
-    department: v("tl-dept").trim(),
-    comm_pawan: commR["Pawan"]|| "0",
-    comm_sri_harsha: commR["Sri Harsha"]|| "0",
-    comm_talha: commR["Talha"]|| "0",
-    comm_deshraj: commR["Deshraj"]|| "0",
-    comm_vivek: commR["Vivek"]|| "0",
-    comm_ganesh: commR["Ganesh"]|| "0",
-    comm_ashutosh: commR["Ashutosh"]|| "0",
-    top_collaborators: getChips("col"),
-    collaboration_notes: v("collab-note"),
-    problem_solving_rating: getRating("ps")|| "0",
-    problem_solving_notes: v("ps-note"),
-    workload_status: getChips("wl"),
-    workload_notes: v("wl-note"),
-    support_rating: getRating("sg")|| "0",
-    support_notes: v("sg-note"),
-    morale_tags: getChips("mo"),
-    morale_notes: v("mo-note"),
-    meeting_rating: getRating("me")|| "0",
-    meeting_notes: v("me-note"),
-    perf_pawan: perfR["Pawan"]|| "0",
-    perf_sri_harsha: perfR["Sri Harsha"]|| "0",
-    perf_talha: perfR["Talha"]|| "0",
-    perf_deshraj: perfR["Deshraj"]|| "0",
-    perf_vivek: perfR["Vivek"]|| "0",
-    perf_ganesh: perfR["Ganesh"]|| "0",
-    perf_ashutosh: perfR["Ashutosh"]|| "0",
-    leadership_rating: getRating("ld")|| "0",
-    leadership_strength: v("ld-str"),
-    leadership_improve: v("ld-imp"),
-    focus_areas: focus,
-    alignment_plan: align,
-    excellence_examples: v("excel-note")
-  };
+  timestamp: new Date().toISOString(),
+  submission_date: new Date().toLocaleDateString("en-IN"),
+
+  team_lead_name: v("tl-name") || "NA",
+  department: v("tl-dept") || "NA",
+
+  comm_pawan: String(commR["Pawan"] || "0"),
+  comm_sri_harsha: String(commR["Sri Harsha"] || "0"),
+  comm_talha: String(commR["Talha"] || "0"),
+  comm_deshraj: String(commR["Deshraj"] || "0"),
+  comm_vivek: String(commR["Vivek"] || "0"),
+  comm_ganesh: String(commR["Ganesh"] || "0"),
+  comm_ashutosh: String(commR["Ashutosh"] || "0"),
+
+  top_collaborators: getChips("col") || "NA",
+  collaboration_notes: v("collab-note") || "NA",
+
+  problem_solving_rating: String(getRating("ps") || "0"),
+  problem_solving_notes: v("ps-note") || "NA",
+
+  workload_status: getChips("wl") || "NA",
+  workload_notes: v("wl-note") || "NA",
+
+  support_rating: String(getRating("sg") || "0"),
+  support_notes: v("sg-note") || "NA",
+
+  morale_tags: getChips("mo") || "NA",
+  morale_notes: v("mo-note") || "NA",
+
+  meeting_rating: String(getRating("me") || "0"),
+  meeting_notes: v("me-note") || "NA",
+
+  perf_pawan: String(perfR["Pawan"] || "0"),
+  perf_sri_harsha: String(perfR["Sri Harsha"] || "0"),
+  perf_talha: String(perfR["Talha"] || "0"),
+  perf_deshraj: String(perfR["Deshraj"] || "0"),
+  perf_vivek: String(perfR["Vivek"] || "0"),
+  perf_ganesh: String(perfR["Ganesh"] || "0"),
+  perf_ashutosh: String(perfR["Ashutosh"] || "0"),
+
+  leadership_rating: String(getRating("ld") || "0"),
+  leadership_strength: v("ld-str") || "NA",
+  leadership_improve: v("ld-imp") || "NA",
+
+  focus_areas: getChips("fc") || "NA",
+  alignment_plan: v("align-note") || "NA",
+  excellence_examples: v("excel-note") || "NA"
+};
   lastPayload = payload;
   document.getElementById("pg"+cur).classList.remove("active");
   document.getElementById("pgload").classList.add("active");
